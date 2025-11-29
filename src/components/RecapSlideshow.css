@@ -1,0 +1,210 @@
+/* RecapSlideshow styles: continuous horizontal marquee in two rows */
+.recap-slideshow {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 0;
+  display: grid;
+  gap: 12px;
+}
+
+.recap-row {
+  overflow: hidden;
+  width: 100%;
+  --marquee-speed: 30s;
+  --marquee-height: 140px;
+  height: var(--marquee-height);
+  display: block;
+}
+
+.recap-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* The track is two copies of the image sequence; animation translates -50% */
+  animation: marquee var(--marquee-speed) linear infinite;
+  will-change: transform;
+}
+
+.recap-row.reverse .recap-track {
+  animation-direction: reverse;
+}
+
+.recap-item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recap-photo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.recap-photo {
+  height: calc(var(--marquee-height) - 16px);
+  width: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1);
+}
+
+/* Decorative CSS-only frame */
+.recap-item.has-frame .recap-photo-wrapper {
+  background: transparent;
+  padding: 8px;
+}
+
+
+/* Bottom-left corner variant */
+.recap-tile-bottom {
+  position: absolute;
+  left: -310px;
+  bottom: 1px;
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.98;
+  overflow: hidden;
+}
+.recap-frame-decor {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  right: 4px;
+  bottom: 4px;
+  pointer-events: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.92), 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* Polaroid style: white bottom border to mimic photo paper */
+.recap-item.frame-polaroid .recap-photo-wrapper {
+  background: #febeff;
+  padding: 8px 8px 18px 8px;
+  border-radius: 10px;
+}
+.recap-item.frame-polaroid .recap-photo {
+  border-radius: 6px;
+}
+.recap-item.frame-polaroid .recap-frame-decor {
+  box-shadow: none;
+  border-radius: 6px;
+}
+
+/* Tile corner decoration: small repeated asset in the top-left corner */
+.recap-tile {
+  position: absolute;
+  left: -29px;
+  top: -43px;
+  width: 120px;
+  height: 120px;
+  background-repeat: no-repeat; /* single image */
+  background-position: center center;
+  background-size: cover; /* fill the small box */
+  border-radius: 50%; /* round corner */
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.98;
+  overflow: hidden;
+}
+
+/* Slightly offset the photo wrapper so tile sits visually on the frame edge */
+.recap-item.has-frame .recap-photo-wrapper { position: relative; }
+
+
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+
+/* Responsive: reduce height on small screens */
+@media (max-width: 640px) {
+  .recap-slideshow { gap: 8px; }
+  .recap-row { --marquee-height: 90px; }
+  .recap-item img { border-radius: 6px; }
+}
+/* RecapSlideshow styles: continuous horizontal marquee in two rows */
+.recap-slideshow {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 0;
+  display: grid;
+  gap: 12px;
+}
+
+.recap-row {
+  overflow: hidden;
+  width: 100%;
+  --marquee-speed: 30s;
+  --marquee-height: 140px;
+  height: var(--marquee-height);
+  display: block;
+}
+
+.recap-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* The track is two copies of the image sequence; animation translates -50% */
+  animation: marquee var(--marquee-speed) linear infinite;
+  will-change: transform;
+}
+
+.recap-row.reverse .recap-track {
+  animation-direction: reverse;
+}
+
+.recap-item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recap-item img {
+  height: calc(var(--marquee-height) - 16px);
+  width: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+
+/* Responsive: reduce height on small screens */
+@media (max-width: 640px) {
+  .recap-slideshow { gap: 8px; }
+  .recap-row { --marquee-height: 90px; }
+  .recap-item img { border-radius: 6px; }
+}
+
+@media (max-width: 640px) {
+  .recap-row { --marquee-height: 100px; }
+  .recap-photo { height: calc(var(--marquee-height) - 12px); }
+  .recap-tile { width: 80px; height: 80px; left: -16px; top: -32px; }
+  .recap-tile-bottom { width: 36px; height: 36px; left: -280px; bottom: 0; }
+  .recap-item.frame-mode-tile .recap-photo-wrapper { padding-bottom: 44px; }
+  .recap-item.has-frame .recap-photo-wrapper { padding: 6px; }
+}
+
+@media (max-width: 480px) {
+  .recap-slideshow { padding: 8px 0; gap: 8px; }
+  .recap-row { --marquee-height: 90px; --marquee-speed: 25s; }
+  .recap-track { gap: 8px; }
+  .recap-tile { width: 64px; height: 64px; left: -12px; top: -24px; }
+  .recap-tile-bottom { width: 28px; height: 28px; left: -260px; }
+}

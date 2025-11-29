@@ -1,0 +1,318 @@
+/* Photobooth styles */
+.photobooth { padding: 20px; max-width: 1200px; margin: 0 auto; position: relative; }
+.photobooth h2 { margin: 0 0 8px 0; font-size: 1.8rem; color: var(--accent); text-align: center; }
+.photobooth .muted { color: #6b6b6b; margin-top: 4px; font-size: 0.95rem; text-align: center; }
+.photobooth-grid { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-top: 20px; }
+.photobooth-canvas-wrap { 
+  background: linear-gradient(135deg, #ffeef5 0%, #fff7fb 100%); 
+  padding: 10px; 
+  border-radius: 16px; 
+  box-shadow: 0 12px 40px rgba(255,105,180,0.12);
+  max-width: 220px;
+  order: 2;
+}
+.photobooth-canvas { width: 100%; height: auto; display: block; background: transparent; border-radius: 8px; }
+.photobooth-controls { display: flex; flex-direction: column; gap: 10px; align-items: center; order: 1; width: 100%; max-width: 980px; }
+
+/* Slots grid - horizontal layout with square cards */
+.slots-grid { 
+  display: flex;
+  flex-direction: row;
+  gap: 12px; 
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.slot-card { 
+  background: #fff; 
+  border-radius: 10px; 
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.slot-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+.slot-preview { 
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: #f9f9f9; 
+  overflow: hidden; 
+  position: relative;
+}
+
+.slot-preview img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block; 
+}
+
+.placeholder-box { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffe4f2 0%, #ffeef8 100%);
+}
+
+.slot-number { 
+  font-size: 1.5rem; 
+  font-weight: 700; 
+  color: #ffb3d9; 
+  opacity: 0.5;
+}
+
+.slot-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(4px);
+}
+
+.camera-btn, .retake-btn { 
+  padding: 6px 12px; 
+  background: #ff8fcf; 
+  color: #fff; 
+  border: 0; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-weight: 600;
+  font-size: 0.75rem;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.camera-btn:hover, .retake-btn:hover { 
+  background: #ff6bb8; 
+}
+
+.retake-btn {
+  background: #6eb5ff;
+}
+
+.retake-btn:hover {
+  background: #5a9fdb;
+}
+
+.actions { 
+  display: flex; 
+  gap: 8px; 
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.actions button { 
+  width: 100px;
+  height: 60px;
+  border-radius: 8px; 
+  border: 0; 
+  color: #fff; 
+  cursor: pointer;
+  font-weight: 60;
+  font-size: 1.2rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #ff8fcf 0%, #ff6ba6 100%);
+  box-shadow: 0 4px 12px rgba(255,105,180,0.3);
+}
+
+.export-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255,105,180,0.4);
+}
+
+.share-btn {
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+  box-shadow: 0 4px 12px rgba(139,92,246,0.3);
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139,92,246,0.4);
+}
+
+.status { 
+  color: #555; 
+  font-size: 0.9rem; 
+  text-align: center; 
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 6px;
+}
+
+/* Camera modal */
+.camera-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.camera-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.camera-header {
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.camera-preview-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.camera-video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.countdown-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.countdown-number {
+  font-size: 8rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+.camera-controls {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.camera-controls button {
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.capture-btn {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: #fff;
+  flex: 1;
+  box-shadow: 0 4px 12px rgba(76,175,80,0.4);
+}
+
+.capture-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(76,175,80,0.5);
+}
+
+.capture-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.camera-controls button.cancel {
+  background: #999;
+  color: #fff;
+}
+
+.camera-controls button.cancel:hover {
+  background: #777;
+}
+
+@media (max-width: 900px) {
+  .photobooth { padding: 12px; }
+  .photobooth h2 { font-size: 1.5rem; }
+  .photobooth .muted { font-size: 0.88rem; }
+  .photobooth-grid { gap: 16px; }
+  .photobooth-canvas-wrap { 
+    max-width: 200px; 
+    padding: 8px;
+  }
+  .slots-grid { 
+    overflow-x: auto; 
+    padding-bottom: 8px; 
+    -webkit-overflow-scrolling: touch;
+    justify-content: center;
+  }
+  .slot-card { 
+    min-width: 140px; 
+    width: 140px;
+  }
+  .actions { flex-wrap: wrap; }
+  .actions button { width: calc(50% - 4px); min-width: 90px; }
+}
+
+@media (max-width: 480px) {
+  .photobooth { padding: 8px; }
+  .photobooth h2 { font-size: 1.3rem; }
+  .photobooth-canvas-wrap { padding: 6px; max-width: 180px; }
+  .slot-card { min-width: 120px; width: 120px; }
+  .slot-number { font-size: 1.2rem; }
+  .camera-btn, .retake-btn { font-size: 0.7rem; padding: 5px 10px; }
+  .actions button { 
+    width: 100%; 
+    height: 50px; 
+    font-size: 1rem; 
+  }
+  .status { font-size: 0.85rem; padding: 6px; }
+  .camera-box { padding: 12px; }
+  .camera-header { font-size: 1rem; }
+  .camera-controls button { padding: 10px 20px; font-size: 0.95rem; }
+  .countdown-number { font-size: 6rem; }
+}

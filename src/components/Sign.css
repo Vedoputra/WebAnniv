@@ -1,0 +1,534 @@
+/* Sign / Love Letter Section */
+.sign-section {
+  padding: 60px 20px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.sign-container {
+  position: relative;
+}
+
+/* Header */
+.sign-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.sign-title {
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.sign-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Envelope Wrapper */
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Envelope */
+.envelope {
+  position: relative;
+  width: 380px;
+  height: 250px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.envelope:not(.open):hover {
+  transform: translateY(-8px);
+}
+
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
+  border: 3px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(255,105,180,0.2);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-left: 190px solid transparent;
+  border-right: 190px solid transparent;
+  border-top: 130px solid var(--accent);
+  transform-origin: top center;
+  transition: transform 0.6s ease;
+  z-index: 2;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+/* Envelope Seal */
+.envelope-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff8fb8 0%, #ff6b9d 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(255,105,180,0.4);
+  z-index: 3;
+  border: 3px solid #fff;
+}
+
+.seal-icon {
+  font-size: 2rem;
+  margin-bottom: 4px;
+}
+
+.tap-hint {
+  font-size: 0.7rem;
+  color: white;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+/* Letter */
+.letter {
+  position: absolute;
+  top: 50%;
+  left: 14%;
+  transform: translate(-50%, -50%);
+  width: 73%;
+  max-width: 550px;
+  z-index: 10;
+}
+
+.letter-paper {
+  background: #ffffff;
+  padding: 40px 40px;
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  position: relative;
+  border: 2px solid #f0f0f0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(255,182,193,0.08) 28px,
+      rgba(255,182,193,0.08) 29px
+    );
+}
+
+/* Close Button */
+.letter-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #ffe8f0;
+  background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
+  color: var(--accent);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.letter-close-btn:hover {
+  background: var(--accent);
+  color: white;
+  transform: rotate(90deg);
+  border-color: var(--accent);
+}
+
+/* Letter Doodles */
+.letter-doodles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.doodle {
+  position: absolute;
+  font-size: 1.8rem;
+  opacity: 0.3;
+  animation: doodleFloat 4s ease-in-out infinite;
+}
+
+.doodle-1 { top: 15px; right: 20px; animation-delay: 0s; }
+.doodle-2 { top: 20px; left: 25px; animation-delay: 1s; }
+.doodle-3 { bottom: 25px; right: 30px; animation-delay: 2s; }
+.doodle-4 { bottom: 20px; left: 20px; animation-delay: 3s; }
+
+@keyframes doodleFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translateY(-8px) rotate(5deg); opacity: 0.5; }
+}
+
+/* Letter Form */
+.letter-header-text {
+  margin-bottom: 20px;
+}
+
+.letter-greeting {
+  font-family: 'Pacifico', 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #ffe8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
+  color: #333;
+  background: #fffbfc;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255,159,184,0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* Letter Signature */
+.letter-signature {
+  margin: 20px 0;
+  text-align: right;
+}
+
+.signature-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1rem;
+  color: #999;
+  margin: 0 0 8px 0;
+  font-style: italic;
+}
+
+.signature-line {
+  display: inline-block;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--accent) 0%, #ff8fb8 100%);
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(255,105,180,0.3);
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255,105,180,0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Success Toast */
+.success-toast {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  padding: 16px 28px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(76,175,80,0.3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  z-index: 9999;
+}
+
+.success-icon {
+  font-size: 1.5rem;
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-toast p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Wishes Display */
+.wishes-display {
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 2px dashed rgba(255,159,184,0.3);
+}
+
+.wishes-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin: 0 0 30px 0;
+  font-weight: 600;
+}
+
+.wishes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Wish Card */
+.wish-card {
+  background: linear-gradient(135deg, #fffbfc 0%, #fff5f8 100%);
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #ffe8f0;
+  box-shadow: 0 6px 20px rgba(255,105,180,0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.wish-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+}
+
+.wish-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255,105,180,0.15);
+}
+
+/* Delete Button */
+.wish-delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffe8f0;
+  background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
+  color: #666;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 5;
+  opacity: 0;
+}
+
+.wish-card:hover .wish-delete-btn {
+  opacity: 1;
+}
+
+.wish-delete-btn:hover {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  border-color: #ff5252;
+  transform: scale(1.1);
+}
+
+.wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ffe8f0;
+}
+
+.wish-from {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.wish-date {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.wish-message {
+  color: #555;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+  font-family: 'Courier New', monospace;
+}
+
+.wish-footer {
+  text-align: right;
+}
+
+.wish-heart {
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sign-title {
+    font-size: 1.8rem;
+  }
+
+  .sign-subtitle {
+    font-size: 1rem;
+  }
+
+  .envelope {
+    width: 320px;
+    height: 210px;
+  }
+
+  .envelope-body {
+    height: 150px;
+  }
+
+  .envelope-flap {
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 110px solid var(--accent);
+  }
+
+  .letter-paper {
+    padding: 25px 20px;
+  }
+
+  .letter-greeting {
+    font-size: 1.3rem;
+  }
+
+  .wishes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .envelope-wrapper {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sign-section { padding: 40px 12px 60px; }
+  .sign-title { font-size: 1.5rem; }
+  .sign-subtitle { font-size: 0.92rem; }
+  .envelope-wrapper { height: 300px; }
+  .envelope {
+    width: 280px;
+    height: 180px;
+  }
+
+  .envelope-body {
+    height: 130px;
+  }
+
+  .envelope-flap {
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 95px solid var(--accent);
+  }
+
+  .envelope-seal {
+    width: 70px;
+    height: 70px;
+  }
+
+  .seal-icon {
+    font-size: 1.6rem;
+  }
+  
+  .tap-hint { font-size: 0.65rem; }
+  .letter { width: 85%; left: 8%; }
+  .letter-paper { padding: 30px 16px; }
+  .letter-greeting { font-size: 1.2rem; }
+  .form-label { font-size: 0.88rem; }
+  .form-input, .form-textarea { padding: 10px 12px; font-size: 0.95rem; }
+  .form-textarea { min-height: 100px; }
+  .submit-btn { padding: 12px 18px; font-size: 1rem; }
+  .wishes-title { font-size: 1.5rem; }
+  .wish-card { padding: 16px; }
+  .success-toast { top: 20px; padding: 12px 20px; font-size: 0.9rem; }
+  .success-icon { width: 28px; height: 28px; font-size: 1.3rem; }
+}
