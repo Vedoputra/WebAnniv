@@ -236,11 +236,32 @@ body{
   margin: 0 auto;
   background: linear-gradient(180deg, #fff9f3 0%, #fff5eb 100%);
   min-height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating Hearts Background */
+.floating-hearts-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-heart {
+  opacity: 0.3;
+  filter: drop-shadow(0 2px 4px rgba(255,105,180,0.2));
+  user-select: none;
 }
 
 .scrapbook-header {
   text-align: center;
   margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
 }
 
 .scrapbook-title {
@@ -259,6 +280,7 @@ body{
 .scrapbook-container {
   position: relative;
   perspective: 1500px;
+  z-index: 2;
 }
 
 .scrapbook-book {
@@ -289,13 +311,10 @@ body{
 
 .scrapbook-item {
   position: relative;
-  transition: transform 0.3s ease;
+  /* Remove CSS transition to let framer-motion handle it */
 }
 
-.scrapbook-item:hover {
-  transform: scale(1.05) !important;
-  z-index: 10;
-}
+/* Remove CSS hover to let framer-motion whileHover handle it */
 
 /* Polaroid Style */
 .polaroid {
@@ -306,7 +325,7 @@ body{
     0 8px 24px rgba(0,0,0,0.08);
   border-radius: 4px;
   position: relative;
-  transition: box-shadow 0.3s ease;
+  /* Remove CSS transition to let framer-motion handle it */
   height: 300px;
   width: 250px;
   display: flex;
@@ -314,11 +333,7 @@ body{
   justify-content: space-between;
 }
 
-.polaroid:hover {
-  box-shadow: 
-    0 8px 20px rgba(0,0,0,0.2),
-    0 12px 32px rgba(0,0,0,0.12);
-}
+/* Remove CSS hover to let framer-motion whileHover handle it */
 
 .polaroid-photo {
   width: 100%;
@@ -388,25 +403,20 @@ body{
   position: absolute;
   font-size: 1.5rem;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-  animation: stickerFloat 3s ease-in-out infinite;
+  /* Remove CSS animation to let framer-motion handle it */
 }
 
 .sticker-0 {
   top: -10px;
   right: -10px;
-  animation-delay: 0s;
 }
 
 .sticker-1 {
   bottom: -10px;
   left: -10px;
-  animation-delay: 1.5s;
 }
 
-@keyframes stickerFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(5deg); }
-}
+/* Remove CSS keyframes - framer-motion will handle sticker animation */
 
 /* Navigation */
 .scrapbook-nav {
