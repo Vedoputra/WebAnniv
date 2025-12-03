@@ -1,7 +1,7 @@
 import React from 'react'
 import './RecapSlideshow.css'
 
-const RecapSlideshow = ({ images = [], speed = 30, height = 140, frame = false, frameStyle = 'polaroid', frameMode = 'polaroid', frameSrc = '', frameBottomSrc = '' }) => {
+const RecapSlideshow = ({ images = [], topImages = null, bottomImages = null, speed = 30, height = 140, frame = false, frameStyle = 'polaroid', frameMode = 'polaroid', frameSrc = '', frameBottomSrc = '' }) => {
 	const defaultFrameSrc = frameSrc || new URL('../assets/photo_asset_5.png', import.meta.url).href
 	const defaultFrameBottom = frameBottomSrc || new URL('../assets/photo_asset_6.png', import.meta.url).href
 	const defaultImages = [
@@ -9,9 +9,13 @@ const RecapSlideshow = ({ images = [], speed = 30, height = 140, frame = false, 
 		new URL('../assets/photo_asset_2.png', import.meta.url).href,
 	]
 
-	const imgs = images && images.length ? images : defaultImages
+	// Determine top/bottom image sets (priority: explicit prop -> `images` prop -> defaults)
+	const topImgs = (topImages && topImages.length) ? topImages : (images && images.length ? images : defaultImages)
+	const bottomImgs = (bottomImages && bottomImages.length) ? bottomImages : (images && images.length ? images : defaultImages)
+
 	// duplicate to allow seamless looping (translate -50%)
-	const sequence = [...imgs, ...imgs]
+	const topSequence = [...topImgs, ...topImgs]
+	const bottomSequence = [...bottomImgs, ...bottomImgs]
 
 	const styleVars = {
 		['--marquee-speed']: `${speed}s`,
@@ -23,7 +27,7 @@ const RecapSlideshow = ({ images = [], speed = 30, height = 140, frame = false, 
 			{/* Top row: left -> right (normal) */}
 			<div className="recap-row">
 				<div className="recap-track">
-					{sequence.map((s, i) => (
+					{topSequence.map((s, i) => (
 						<div className={`recap-item ${frame ? 'has-frame' : ''} ${frameStyle ? `frame-${frameStyle}` : ''}`} key={`top-${i}`}>
 									<div className="recap-photo-wrapper">
 										<img className="recap-photo" src={s} alt="recap" loading="lazy" />
@@ -53,7 +57,7 @@ const RecapSlideshow = ({ images = [], speed = 30, height = 140, frame = false, 
 			{/* Bottom row: right -> left (reverse) */}
 			<div className="recap-row reverse">
 				<div className="recap-track">
-					{sequence.map((s, i) => (
+							{bottomSequence.map((s, i) => (
 						<div className={`recap-item ${frame ? 'has-frame' : ''} ${frameStyle ? `frame-${frameStyle}` : ''}`} key={`bot-${i}`}>
 									<div className="recap-photo-wrapper">
 										<img className="recap-photo" src={s} alt="recap" loading="lazy" />

@@ -4,7 +4,7 @@ import Gallery from './components/Gallery'
 import Activities from './components/Activities'
 import Photobooth from './components/Photobooth'
 import Sign from './components/Sign'
-import images from './data/image'
+import images, {recapImages, recapImages2} from './data/image'
 import RecapSlideshow from './components/RecapSlideshow'
 
 
@@ -31,8 +31,8 @@ export default function App() {
           <>
             <Hero onOpenGallery={openGallery} onOpenPhotobooth={openPhotobooth} />
             <Activities />
-            {/* Recap slideshow shown on the hero page; passes gallery images by default */}
-            <RecapSlideshow images={images} speed={28} height={120} frame={true} frameMode="tile" />
+            {/* Recap slideshow shown on the hero page; top uses recapImages, bottom uses recapImages2 */}
+            <RecapSlideshow topImages={recapImages} bottomImages={recapImages2} speed={28} height={120} frame={true} frameMode="tile" />
             <Sign />
           </>
         ) : page === 1 ? (
