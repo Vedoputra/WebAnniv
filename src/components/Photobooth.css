@@ -210,6 +210,14 @@
   width: 100%;
   height: auto;
   display: block;
+  transform-origin: center center;
+}
+
+/* Lock camera orientation - prevent auto-rotation on mobile landscape */
+@media screen and (orientation: landscape) {
+  .camera-video {
+    transform: rotate(0deg) !important;
+  }
 }
 
 .countdown-overlay {

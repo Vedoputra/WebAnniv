@@ -68,17 +68,18 @@ export default function Photobooth() {
         
         let drawSource = img
         
+        // Don't rotate - result is already correct
         // If image is landscape (width > height), flip 180° to fix upside-down issue
-        if (img.width > img.height) {
-          const off = document.createElement('canvas')
-          off.width = img.width
-          off.height = img.height
-          const octx = off.getContext('2d')
-          octx.translate(off.width / 2, off.height / 2)
-          octx.rotate(Math.PI)  // Rotate 180 degrees
-          octx.drawImage(img, -img.width / 2, -img.height / 2)
-          drawSource = off
-        }
+        // if (img.width > img.height) {
+        //   const off = document.createElement('canvas')
+        //   off.width = img.width
+        //   off.height = img.height
+        //   const octx = off.getContext('2d')
+        //   octx.translate(off.width / 2, off.height / 2)
+        //   // octx.rotate(Math.PI)  // Rotate 180 degrees
+        //   octx.drawImage(img, -img.width / 2, -img.height / 2)
+        //   drawSource = off
+        // }
         
         // Use cover scaling: fill the slot completely, center-crop if needed
         const { sw, sh } = coverImageSize(drawSource.width, drawSource.height, config.w, config.h)
