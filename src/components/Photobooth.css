@@ -213,10 +213,19 @@
   transform-origin: center center;
 }
 
-/* Lock camera orientation - prevent auto-rotation on mobile landscape */
-@media screen and (orientation: landscape) {
+/* Counter-rotate camera when phone is in landscape to keep it upright */
+@media screen and (orientation: landscape) and (max-width: 900px) {
+  .camera-preview-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   .camera-video {
-    transform: rotate(0deg) !important;
+    transform: rotate(90deg);
+    width: auto;
+    height: 100%;
+    max-height: 80vh;
   }
 }
 
