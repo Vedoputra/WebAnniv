@@ -66,7 +66,8 @@ export default function Photobooth() {
         // eslint-disable-next-line no-await-in-loop
         const img = await loadImage(slot.url)
         
-        // If portrait (height > width), rotate -90deg to landscape first
+        // If portrait (height > width), rotate +90deg (clockwise) to landscape
+        // This matches how mobile camera captures portrait selfies
         let drawSource = img
         if (img.height > img.width) {
           const off = document.createElement('canvas')
@@ -74,7 +75,7 @@ export default function Photobooth() {
           off.height = img.width
           const octx = off.getContext('2d')
           octx.translate(off.width / 2, off.height / 2)
-          octx.rotate(-Math.PI / 2)
+          octx.rotate(Math.PI / 2)  // Rotate clockwise (+90deg)
           octx.drawImage(img, -img.width / 2, -img.height / 2)
           drawSource = off
         }
