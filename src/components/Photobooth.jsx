@@ -66,12 +66,25 @@ export default function Photobooth() {
         // eslint-disable-next-line no-await-in-loop
         const img = await loadImage(slot.url)
         
-        // No rotation - let camera capture naturally in any orientation
+        let drawSource = img
+        
+        // If image is landscape (width > height), flip 180° to fix upside-down issue
+        if (img.width > img.height) {
+          const off = document.createElement('canvas')
+          off.width = img.width
+          off.height = img.height
+          const octx = off.getContext('2d')
+          octx.translate(off.width / 2, off.height / 2)
+          octx.rotate(Math.PI)  // Rotate 180 degrees
+          octx.drawImage(img, -img.width / 2, -img.height / 2)
+          drawSource = off
+        }
+        
         // Use cover scaling: fill the slot completely, center-crop if needed
-        const { sw, sh } = coverImageSize(img.width, img.height, config.w, config.h)
+        const { sw, sh } = coverImageSize(drawSource.width, drawSource.height, config.w, config.h)
         const offsetX = config.x + Math.round((config.w - sw) / 2)
         const offsetY = config.y + Math.round((config.h - sh) / 2)
-        ctx.drawImage(img, 0, 0, img.width, img.height, offsetX, offsetY, sw, sh)
+        ctx.drawImage(drawSource, 0, 0, drawSource.width, drawSource.height, offsetX, offsetY, sw, sh)
       } else {
         // placeholder - light blue sky background
         ctx.fillStyle = '#d4eeff'
