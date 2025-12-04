@@ -190,12 +190,7 @@ export default function Photobooth() {
 
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
-          facingMode: 'user',
-          width: { ideal: 1920 },
-          height: { ideal: 1080 },
-          aspectRatio: { ideal: 16/9 }
-        }, 
+        video: { facingMode: 'user' }, 
         audio: false 
       })
       setStream(mediaStream)
