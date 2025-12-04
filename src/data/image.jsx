@@ -42,11 +42,12 @@ const images = [
   new URL('../assets/IMG-20251203-WA0045.jpg', import.meta.url).href,
   new URL('../assets/IMG-20251203-WA0046.jpg', import.meta.url).href,
   new URL('../assets/IMG-20251203-WA0047.jpg', import.meta.url).href,
+  new URL('../assets/WhatsApp Image 2025-12-04 at 11.38.32_dbb017a4.jpg', import.meta.url).href,
   // fallback / previously used images
   new URL('../assets/photo1.jpg', import.meta.url).href,
   new URL('../assets/photo_hero.png', import.meta.url).href,
 ]
-
+//WhatsApp Image 2025-12-04 at 11.38.32_dbb017a4.jpg
 // Named export for the recap slideshow selection.
 // Edit this array to choose exactly which images appear in the recap slideshow.
 // For example, use `recapImages = [images[0], images[3], images[8]]` to pick specific photos.

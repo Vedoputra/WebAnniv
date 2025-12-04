@@ -70,32 +70,32 @@ const stickerVariants = {
 const memories = [
   {
     id: 1,
-    photo: images[0],
-    caption: 'First Date ❤️',
-    date: 'January 2024',
+    photo: images[20],
+    caption: 'Pertama Kali ke Besakih bareng ❤️',
+    date: '20 April 2025',
     stickers: ['💕', '✨'],
     rotation: -2
   },
   {
     id: 2,
-    photo: images[1],
-    caption: 'Beach Trip 🌊',
-    date: 'March 2024',
+    photo: images[34],
+    caption: 'Jalan-Jalan 🌊',
+    date: '26 July 2025',
     stickers: ['🏖️', '☀️'],
     rotation: 1.5
   },
   {
     id: 3,
-    photo: images[2],
-    caption: 'Coffee Date ☕',
-    date: 'April 2024',
+    photo: images[38  ],
+    caption: 'HOC #6',
+    date: 'November 2025',
     stickers: ['☕', '🍰'],
     rotation: -1
   },
   {
     id: 4,
-    photo: images[3],
-    caption: 'Sunset Walk 🌅',
+    photo: images[8],
+    caption: 'Random Picture 🌅',
     date: 'May 2024',
     stickers: ['🌅', '💑'],
     rotation: 2
@@ -103,15 +103,15 @@ const memories = [
   {
     id: 5,
     photo: images[4],
-    caption: 'Anniversary 🎉',
+    caption: 'Random Picture 🎉',
     date: 'June 2024',
     stickers: ['🎂', '🎈'],
     rotation: -1.5
   },
   {
     id: 6,
-    photo: images[5],
-    caption: 'Movie Night 🎬',
+    photo: images[0],
+    caption: 'Random Picture 🎬',
     date: 'July 2024',
     stickers: ['🍿', '🎥'],
     rotation: 1
