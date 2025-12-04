@@ -19,9 +19,12 @@
   display: flex;
   flex-direction: row;
   gap: 12px; 
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-wrap: nowrap; /* force single horizontal row */
   align-items: center;
+  overflow-x: auto; /* allow horizontal scroll when needed */
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
 }
 
 .slot-card { 
@@ -288,7 +291,7 @@
     overflow-x: auto; 
     padding-bottom: 8px; 
     -webkit-overflow-scrolling: touch;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .slot-card { 
     min-width: 140px; 
