@@ -210,6 +210,8 @@
   width: 100%;
   height: auto;
   display: block;
+  object-fit: cover;
+  aspect-ratio: 16/9;
 }
 
 .countdown-overlay {

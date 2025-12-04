@@ -62,13 +62,28 @@ export default function Photobooth() {
       ctx.clip()
       
       if (slot && slot.url) {
-        // draw image fitted
+        // draw image with cover scaling so it fills the slot completely (landscape)
         // eslint-disable-next-line no-await-in-loop
         const img = await loadImage(slot.url)
-        const { sw, sh } = fitImage(img.width, img.height, config.w, config.h)
+        
+        // If portrait (height > width), rotate -90deg to landscape first
+        let drawSource = img
+        if (img.height > img.width) {
+          const off = document.createElement('canvas')
+          off.width = img.height
+          off.height = img.width
+          const octx = off.getContext('2d')
+          octx.translate(off.width / 2, off.height / 2)
+          octx.rotate(-Math.PI / 2)
+          octx.drawImage(img, -img.width / 2, -img.height / 2)
+          drawSource = off
+        }
+        
+        // Use cover scaling: fill the slot completely, center-crop if needed
+        const { sw, sh } = coverImageSize(drawSource.width, drawSource.height, config.w, config.h)
         const offsetX = config.x + Math.round((config.w - sw) / 2)
         const offsetY = config.y + Math.round((config.h - sh) / 2)
-        ctx.drawImage(img, 0, 0, img.width, img.height, offsetX, offsetY, sw, sh)
+        ctx.drawImage(drawSource, 0, 0, drawSource.width, drawSource.height, offsetX, offsetY, sw, sh)
       } else {
         // placeholder - light blue sky background
         ctx.fillStyle = '#d4eeff'
@@ -108,6 +123,12 @@ export default function Photobooth() {
 
   function fitImage(iw, ih, maxW, maxH) {
     const r = Math.min(maxW / iw, maxH / ih)
+    return { sw: Math.round(iw * r), sh: Math.round(ih * r) }
+  }
+
+  // Cover scaling: scale so image fills destination completely (may crop edges)
+  function coverImageSize(iw, ih, destW, destH) {
+    const r = Math.max(destW / iw, destH / ih)
     return { sw: Math.round(iw * r), sh: Math.round(ih * r) }
   }
 
@@ -169,7 +190,12 @@ export default function Photobooth() {
 
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
-        video: { facingMode: 'user' }, 
+        video: { 
+          facingMode: 'user',
+          width: { ideal: 1920 },
+          height: { ideal: 1080 },
+          aspectRatio: { ideal: 16/9 }
+        }, 
         audio: false 
       })
       setStream(mediaStream)
