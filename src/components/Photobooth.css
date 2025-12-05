@@ -210,6 +210,11 @@
   width: 100%;
   height: auto;
   display: block;
+  -webkit-transform: scaleX(-1); /* Mirror effect like a selfie camera */
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
   transform-origin: center center;
 }
 
@@ -222,7 +227,11 @@
   }
   
   .camera-video {
-    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg) scaleX(-1); /* Keep mirror effect when rotated */
+    -moz-transform: rotate(90deg) scaleX(-1);
+    -ms-transform: rotate(90deg) scaleX(-1);
+    -o-transform: rotate(90deg) scaleX(-1);
+    transform: rotate(90deg) scaleX(-1);
     width: auto;
     height: 100%;
     max-height: 80vh;

@@ -244,7 +244,12 @@ export default function Photobooth() {
     tempCanvas.width = video.videoWidth
     tempCanvas.height = video.videoHeight
     const ctx = tempCanvas.getContext('2d')
+    
+    // Mirror the capture to match preview (mirrorless effect)
+    ctx.translate(tempCanvas.width, 0)
+    ctx.scale(-1, 1)
     ctx.drawImage(video, 0, 0)
+    
     tempCanvas.toBlob((blob) => {
       const url = URL.createObjectURL(blob)
       const next = [...slots]
