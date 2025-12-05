@@ -245,9 +245,8 @@ export default function Photobooth() {
     tempCanvas.height = video.videoHeight
     const ctx = tempCanvas.getContext('2d')
     
-    // Mirror the capture to match preview (mirrorless effect)
-    ctx.translate(tempCanvas.width, 0)
-    ctx.scale(-1, 1)
+    // Capture without mirroring - result will be in correct orientation
+    // Preview is mirrored via CSS, but we save the actual correct orientation
     ctx.drawImage(video, 0, 0)
     
     tempCanvas.toBlob((blob) => {
