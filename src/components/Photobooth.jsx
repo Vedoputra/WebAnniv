@@ -242,31 +242,16 @@ export default function Photobooth() {
     const video = videoRef.current
     const tempCanvas = document.createElement('canvas')
     
-    // Detect if we're in landscape mode on mobile
-    const isLandscapeMobile = window.innerWidth <= 900 && window.matchMedia('(orientation: landscape)').matches
+    // Always capture in native camera dimensions (don't rotate canvas itself)
+    tempCanvas.width = video.videoWidth
+    tempCanvas.height = video.videoHeight
+    const ctx = tempCanvas.getContext('2d')
     
-    if (isLandscapeMobile) {
-      // In landscape mobile, video is rotated 90deg, so swap dimensions
-      tempCanvas.width = video.videoHeight
-      tempCanvas.height = video.videoWidth
-      const ctx = tempCanvas.getContext('2d')
-      
-      // Apply same transform as CSS: rotate 90deg then mirror
-      ctx.translate(tempCanvas.width / 2, tempCanvas.height / 2)
-      ctx.rotate(Math.PI / 2) // 90 degrees
-      ctx.scale(-1, 1) // mirror horizontally
-      ctx.drawImage(video, -video.videoWidth / 2, -video.videoHeight / 2, video.videoWidth, video.videoHeight)
-    } else {
-      // Normal portrait mode or desktop
-      tempCanvas.width = video.videoWidth
-      tempCanvas.height = video.videoHeight
-      const ctx = tempCanvas.getContext('2d')
-      
-      // Just mirror horizontally to match preview
-      ctx.translate(tempCanvas.width, 0)
-      ctx.scale(-1, 1)
-      ctx.drawImage(video, 0, 0)
-    }
+    // Just mirror the image horizontally to match how preview looks
+    // Don't rotate - let the image stay in its native orientation
+    ctx.translate(tempCanvas.width, 0)
+    ctx.scale(-1, 1)
+    ctx.drawImage(video, 0, 0)
     
     tempCanvas.toBlob((blob) => {
       const url = URL.createObjectURL(blob)
